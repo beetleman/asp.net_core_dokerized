@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace app.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly AppSettings AppSettings;
+        public HomeController(IOptions<AppSettings> appSettings) {
+            AppSettings = appSettings.Value;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -16,14 +22,13 @@ namespace app.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
+            ViewData["ConnectionString"] = AppSettings.ConnectionString;
             return View();
         }
 
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 

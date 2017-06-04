@@ -11,10 +11,10 @@ services:
       - db
     ports:
       - "5000:5000"
-    command: bash -c "dotnet restore; dotnet run"
+    command: bash -c "dotnet restore; dotnet watch run"
 
   db:
     image: microsoft/mssql-server-linux:latest
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=!qsddF234fdfFFs;dx
+      - SA_PASSWORD=qsddF234fdfFFsx
