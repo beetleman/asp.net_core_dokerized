@@ -14,7 +14,6 @@ services:
     command: bash -c "dotnet restore; dotnet watch run"
 
   db:
-    image: microsoft/mssql-server-linux:latest
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=qsddF234fdfFFsx
+    build:
+      context: .
+      dockerfile: ./Dockerfile.mssql
