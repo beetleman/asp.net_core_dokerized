@@ -3,10 +3,9 @@ MAINTAINER Mateusz Probachta <mateusz.probachta@gmail.com>
 
 RUN mkdir -p /app
 ADD ./src/sql /app
-ADD ./entrypoint.mssql.sh /app/entrypoint.sh
 WORKDIR /app
 
 ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=qsddF234fdfFFsx
 
-CMD /bin/bash ./entrypoint.sh
+CMD /bin/bash ./entrypoint.mssql.sh
