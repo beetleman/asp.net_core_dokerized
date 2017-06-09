@@ -6,44 +6,44 @@ GO
 
 CREATE TABLE Genders (
   GenderID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-  Name NVARCHAR(100) NOT NULL UNIQUE
+  GenderName NVARCHAR(100) NOT NULL UNIQUE
 );
 GO
 
 CREATE TABLE Continents (
   ContinentID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-  Name NVARCHAR(100) NOT NULL UNIQUE,
-  Area INT NOT NULL
+  ContinentName NVARCHAR(100) NOT NULL UNIQUE,
+  ContinentArea INT NOT NULL
 );
 GO
 
 CREATE TABLE Countries (
   CountryID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-  Name NVARCHAR(100) NOT NULL UNIQUE,
-  Capital NVARCHAR(100) NOT NULL,
-  Area INT NOT NULL,
+  CountryName NVARCHAR(100) NOT NULL UNIQUE,
+  CountryCapital NVARCHAR(100) NOT NULL,
+  CountryArea INT NOT NULL,
   ContinentID INT NOT NULL FOREIGN KEY REFERENCES Continents(ContinentID)
 );
 GO
 
 CREATE TABLE Humans (
   HumanID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-  Name NVARCHAR(100) NOT NULL,
-  NickName NVARCHAR(100),
-  SurName NVARCHAR(100) NOT NULL,
+  HumanName NVARCHAR(100) NOT NULL,
+  HumanNickName NVARCHAR(100),
+  HumanSurName NVARCHAR(100) NOT NULL,
   CountryID INT NOT NULL FOREIGN KEY REFERENCES Countries(CountryID),
   GenderID INT NOT NULL FOREIGN KEY REFERENCES Genders(GenderID)
 );
 GO
 
 SET IDENTITY_INSERT Genders ON;
-INSERT INTO Genders (GenderID, Name)
+INSERT INTO Genders (GenderID, GenderName)
 VALUES (0, N'Female'),
        (1, N'Male');
 SET IDENTITY_INSERT Genders OFF;
 GO
 
-INSERT INTO Genders (Name)
+INSERT INTO Genders (GenderName)
 VALUES (N'Agender'),
        (N'Androgyne'),
        (N'Androgynous'),
@@ -103,7 +103,7 @@ VALUES (N'Agender'),
 GO
 
 SET IDENTITY_INSERT Continents ON;
-INSERT INTO Continents (ContinentId, Name, Area)
+INSERT INTO Continents (ContinentId, ContinentName, ContinentArea)
 VALUES (0, N'Asia', 44579000),
        (1, N'South America', 17819000),
        (2, N'North America', 24256000),
@@ -115,12 +115,34 @@ SET IDENTITY_INSERT Continents OFF;
 GO
 
 SET IDENTITY_INSERT Countries ON;
-INSERT INTO Countries (CountryID, Name, Capital, Area, ContinentID)
+INSERT INTO Countries (CountryID, CountryName, CountryCapital, CountryArea, ContinentID)
 VALUES (0, N'Poland', N'Warszawa', 312679, 4),
        (1, N'Moldova', N'Chișinău', 33846, 4 );
 SET IDENTITY_INSERT Countries OFF;
 GO
 
-INSERT INTO Humans (Name, SurName, CountryID, GenderID)
+INSERT INTO Humans (HumanName, HumanSurName, CountryID, GenderID)
 VALUES (N'Mateusz', N'Probachta', 0, 1);
+GO
+
+
+-- Views
+CREATE VIEW CountriesDetails
+AS
+  SELECT c.*,
+         ContinentName,
+         ContinentArea
+         FROM Countries c
+  JOIN Continents
+  ON c.ContinentID = Continents.ContinentID;
+GO
+
+CREATE VIEW HummansDetails
+AS
+  SELECT h.*,
+         ContinentName,
+         CountryName
+         FROM Humans h
+  JOIN CountriesDetails c
+  ON h.CountryID = c.CountryID;
 GO
