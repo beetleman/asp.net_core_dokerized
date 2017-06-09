@@ -1,3 +1,10 @@
+PRINT 'setup: start'
+IF EXISTS (select * from sys.databases where name = 'APP_DB') BEGIN
+    PRINT 'setup: db exist'
+    set noexec on;
+END
+
+
 CREATE DATABASE APP_DB;
 GO
 
@@ -146,3 +153,6 @@ AS
   JOIN CountriesDetails c
   ON h.CountryID = c.CountryID;
 GO
+
+set noexec off;
+PRINT 'setup: end'
