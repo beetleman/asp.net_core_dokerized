@@ -144,7 +144,7 @@ AS
   ON c.ContinentID = Continents.ContinentID;
 GO
 
-CREATE VIEW HummansDetails
+CREATE VIEW HumansDetails
 AS
   SELECT h.*,
          ContinentName,
@@ -152,6 +152,94 @@ AS
          FROM Humans h
   JOIN CountriesDetails c
   ON h.CountryID = c.CountryID;
+GO
+
+-- Procedures
+
+-- -- humans
+CREATE PROCEDURE getHumansDetails
+AS
+  SELECT * FROM HummansDetails;
+GO
+
+CREATE PROCEDURE getHumanDetails @id INT
+AS
+  SELECT * FROM HumansDetails
+  WHERE HumanID = @id;
+GO
+
+CREATE PROCEDURE createHuman
+       @name NVARCHAR(100),
+       @surName NVARCHAR(100),
+       @countryID INT = 1,
+       @genderID INT = 1
+AS
+  INSERT INTO Humans (HumanName, HumanSurName, CountryID, GenderID)
+  VALUES (@name, @surName, @countryID, @genderID);
+GO
+
+-- -- countries
+CREATE PROCEDURE getCountriesDetails
+AS
+  SELECT * FROM HummansDetails;
+GO
+
+CREATE PROCEDURE getCountryDetails
+       @id INT
+AS
+  SELECT * FROM CountriesDetails
+  WHERE CountryID = @id;
+GO
+
+CREATE PROCEDURE createCounty
+       @name NVARCHAR(100),
+       @capital NVARCHAR(100),
+       @area INT,
+       @continentID INT = 1
+AS
+  INSERT INTO Countries (CountryName, CountryCapital, CountryArea, ContinentID)
+  VALUES (@name, @capital, @area, @continentID)
+GO
+
+-- -- continents
+CREATE PROCEDURE getContinentsDetails
+AS
+  SELECT * FROM Continents;
+GO
+
+CREATE PROCEDURE getContinentDetails
+       @id INT
+AS
+  SELECT * FROM Continents
+  WHERE ContinentID = @id;
+GO
+
+CREATE PROCEDURE createContinent
+       @name NVARCHAR(100),
+       @area INT
+AS
+  INSERT INTO Continents (ContinentName, ContinentArea)
+  VALUES (@name, @area)
+GO
+
+-- -- genders
+CREATE PROCEDURE getGandersDetails
+AS
+  SELECT * FROM Ganders;
+GO
+
+CREATE PROCEDURE getGanderDetails
+       @id INT
+AS
+  SELECT * FROM Ganders
+  WHERE GanderID = @id;
+GO
+
+CREATE PROCEDURE createGender
+       @name NVARCHAR(100)
+AS
+  INSERT INTO Genders (GenderName)
+  VALUES (@name)
 GO
 
 set noexec off;
