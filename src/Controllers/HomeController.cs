@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,12 +10,15 @@ namespace app.Controllers
     public class HomeController : Controller
     {
         private readonly AppSettings AppSettings;
-        public HomeController(IOptions<AppSettings> appSettings) {
+        private readonly DataService DataService;
+        public HomeController(IOptions<AppSettings> appSettings, DataService dataService) {
             AppSettings = appSettings.Value;
+            DataService = dataService;
         }
 
         public IActionResult Index()
         {
+            ViewData["allHumans"] = DataService.getAllHumans();
             return View();
         }
 

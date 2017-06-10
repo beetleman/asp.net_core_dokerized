@@ -36,8 +36,8 @@ GO
 CREATE TABLE Humans (
   HumanID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
   HumanName NVARCHAR(100) NOT NULL,
-  HumanNickName NVARCHAR(100),
   HumanSurName NVARCHAR(100) NOT NULL,
+  HumanNickName NVARCHAR(100) NOT NULL DEFAULT '',
   CountryID INT NOT NULL FOREIGN KEY REFERENCES Countries(CountryID),
   GenderID INT NOT NULL FOREIGN KEY REFERENCES Genders(GenderID)
 );
@@ -137,8 +137,7 @@ GO
 CREATE VIEW CountriesDetails
 AS
   SELECT c.*,
-         ContinentName,
-         ContinentArea
+         ContinentName
          FROM Countries c
   JOIN Continents
   ON c.ContinentID = Continents.ContinentID;
@@ -147,11 +146,14 @@ GO
 CREATE VIEW HumansDetails
 AS
   SELECT h.*,
+         CountryName,
          ContinentName,
-         CountryName
+         GenderName
          FROM Humans h
   JOIN CountriesDetails c
-  ON h.CountryID = c.CountryID;
+  ON h.CountryID = c.CountryID
+  JOIN Genders g
+  ON h.GenderID = g.GenderID;
 GO
 
 -- Procedures
@@ -159,7 +161,7 @@ GO
 -- -- humans
 CREATE PROCEDURE getHumansDetails
 AS
-  SELECT * FROM HummansDetails;
+  SELECT * FROM HumansDetails;
 GO
 
 CREATE PROCEDURE getHumanDetails @id INT
