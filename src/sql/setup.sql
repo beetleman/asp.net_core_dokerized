@@ -183,7 +183,7 @@ GO
 -- -- countries
 CREATE PROCEDURE getCountriesDetails
 AS
-  SELECT * FROM HummansDetails;
+  SELECT * FROM CountriesDetails;
 GO
 
 CREATE PROCEDURE getCountryDetails
