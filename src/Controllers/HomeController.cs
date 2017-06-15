@@ -28,6 +28,12 @@ namespace app.Controllers
             return View();
         }
 
+        public IActionResult Continents()
+        {
+            ViewData["allContinents"] = DataService.getAllContinents();
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
