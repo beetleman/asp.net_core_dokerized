@@ -22,6 +22,12 @@ namespace app.Controllers
             return View();
         }
 
+        public IActionResult Countries()
+        {
+            ViewData["allCountries"] = DataService.getAllCountries();
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

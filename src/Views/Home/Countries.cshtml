@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Countries";
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Capital</th>
+      <th>Area (km<sup>2</sup>)</th>
+      <th>Continent Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @foreach (var human in ViewData["allCountries"] as List<CountryDetails>) {
+      <tr>
+        <td>@human.Name</td>
+        <td>@human.Capital</td>
+        <td>@human.Area</td>
+        <td>@human.ContinentName</td>
+      </tr>
+      }
+  </tbody>
+</table>

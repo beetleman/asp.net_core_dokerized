@@ -16,15 +16,15 @@
   </thead>
 
   <tbody>
-  <tr>
     @foreach (var human in ViewData["allHumans"] as List<HumanDetails>) {
-      <td>@human.Name</td>
-      <td>@human.Surname</td>
-      <td>@human.Nick</td>
-      <td>@human.GenderName</td>
-      <td>@human.CountryName</td>
-      <td>@human.ContinentName</td>
+      <tr>
+        <td>@human.Name</td>
+        <td>@human.Surname</td>
+        <td>@human.Nick</td>
+        <td>@human.GenderName</td>
+        <td>@human.CountryName</td>
+        <td>@human.ContinentName</td>
+      </tr>
       }
-  </tr>
   </tbody>
 </table>
