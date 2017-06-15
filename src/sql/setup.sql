@@ -204,12 +204,12 @@ AS
 GO
 
 -- -- continents
-CREATE PROCEDURE getContinentsDetails
+CREATE PROCEDURE getContinents
 AS
   SELECT * FROM Continents;
 GO
 
-CREATE PROCEDURE getContinentDetails
+CREATE PROCEDURE getContinent
        @id INT
 AS
   SELECT * FROM Continents
@@ -225,16 +225,16 @@ AS
 GO
 
 -- -- genders
-CREATE PROCEDURE getGandersDetails
+CREATE PROCEDURE getGenders
 AS
-  SELECT * FROM Ganders;
+  SELECT * FROM Genders;
 GO
 
-CREATE PROCEDURE getGanderDetails
+CREATE PROCEDURE getGender
        @id INT
 AS
-  SELECT * FROM Ganders
-  WHERE GanderID = @id;
+  SELECT * FROM Genders
+  WHERE GenderID = @id;
 GO
 
 CREATE PROCEDURE createGender

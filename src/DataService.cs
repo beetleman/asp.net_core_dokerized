@@ -43,5 +43,67 @@ namespace app
             }
             return humansDetails;
         }
+
+        public List<CountryDetails> getAllCountries()
+        {
+            List<CountryDetails> countriesDetails = new List<CountryDetails>(); ;
+            using (SqlConnection con = new SqlConnection(AppSettings.ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("EXEC getCountriesDetails", con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    countriesDetails.Add(new CountryDetails {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Capital = reader.GetString(2),
+                            Area = reader.GetInt32(3),
+                            ContinentID = reader.GetInt32(4),
+                            ContinentName = reader.GetString(5)
+                        });
+                }
+            }
+            return countriesDetails;
+        }
+
+        public List<Continent> getAllContinents()
+        {
+            List<Continent> continents = new List<Continent>(); ;
+            using (SqlConnection con = new SqlConnection(AppSettings.ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("EXEC getContinents", con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    continents.Add(new Continent {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Area = reader.GetInt32(2),
+                        });
+                }
+            }
+            return continents;
+        }
+
+        public List<Gender> getAllGenders()
+        {
+            List<Gender> genders = new List<Gender>(); ;
+            using (SqlConnection con = new SqlConnection(AppSettings.ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("EXEC getGenders", con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    genders.Add(new Gender {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                        });
+                }
+            }
+            return genders;
+        }
     }
 }

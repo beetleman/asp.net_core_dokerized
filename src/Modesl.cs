@@ -18,4 +18,24 @@ namespace app
         public string ContinentName { set; get; }
     }
 
+    public class CountryDetails {
+        public int Id { set; get; }
+        public string Name { set; get; }
+        public string Capital { set; get; }
+        public int Area { set; get; }
+        public int ContinentID { set; get; }
+        public string ContinentName { set; get; }
+    }
+
+    public class Continent {
+        public int Id { set; get; }
+        public string Name { set; get; }
+        public int Area { set; get; }
+    }
+
+    public class Gender {
+        public int Id { set; get; }
+        public string Name { set; get; }
+    }
+
 }
