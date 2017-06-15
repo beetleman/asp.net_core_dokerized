@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Genders";
+}
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @foreach (var human in ViewData["allGenders"] as List<Gender>) {
+      <tr>
+        <td>@human.Name</td>
+      </tr>
+      }
+  </tbody>
+</table>

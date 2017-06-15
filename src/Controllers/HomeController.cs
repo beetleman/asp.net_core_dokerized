@@ -34,6 +34,12 @@ namespace app.Controllers
             return View();
         }
 
+        public IActionResult Genders()
+        {
+            ViewData["allGenders"] = DataService.getAllGenders();
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
