@@ -12,10 +12,10 @@
   </thead>
 
   <tbody>
-    @foreach (var human in ViewData["allContinents"] as List<Continent>) {
+    @foreach (var continent in ViewData["allContinents"] as List<Continent>) {
       <tr>
-        <td>@human.Name</td>
-        <td>@human.Area</td>
+        <td>@continent.Name</td>
+        <td>@continent.Area</td>
       </tr>
       }
   </tbody>

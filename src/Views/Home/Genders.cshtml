@@ -11,9 +11,9 @@
   </thead>
 
   <tbody>
-    @foreach (var human in ViewData["allGenders"] as List<Gender>) {
+    @foreach (var gender in ViewData["allGenders"] as List<Gender>) {
       <tr>
-        <td>@human.Name</td>
+        <td>@gender.Name</td>
       </tr>
       }
   </tbody>

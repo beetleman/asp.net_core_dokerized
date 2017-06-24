@@ -14,12 +14,12 @@
   </thead>
 
   <tbody>
-    @foreach (var human in ViewData["allCountries"] as List<CountryDetails>) {
+    @foreach (var country in ViewData["allCountries"] as List<CountryDetails>) {
       <tr>
-        <td>@human.Name</td>
-        <td>@human.Capital</td>
-        <td>@human.Area</td>
-        <td>@human.ContinentName</td>
+        <td>@country.Name</td>
+        <td>@country.Capital</td>
+        <td>@country.Area</td>
+        <td>@country.ContinentName</td>
       </tr>
       }
   </tbody>
