@@ -33,11 +33,11 @@ namespace app.Controllers
         [HttpPost]
         public IActionResult AddHuman(HumanViewModel input)
         {
-            ViewData["allCountries"] = DataService.getAllCountries();
-            ViewData["allGenders"] = DataService.getAllGenders();
-            Console.WriteLine("Post");
-            Console.WriteLine(input.Name);
-            return View();
+            if (ModelState.IsValid) {
+                DataService.addHuman(input);
+                return RedirectToAction("Index");
+            }
+            return AddHuman();
         }
 
         public IActionResult Countries()

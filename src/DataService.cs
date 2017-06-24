@@ -44,6 +44,25 @@ namespace app
             return humansDetails;
         }
 
+
+        public void addHuman(HumanViewModel input)
+        {
+            using (SqlConnection con = new SqlConnection(AppSettings.ConnectionString))
+            {
+                con.Open();
+
+                string sql = "EXEC createHuman ";
+                sql += "'" + input.Name + "', ";
+                sql +="'" + input.Surname + "', ";
+                sql +="'" + input.Country + "', ";
+                sql += "'" + input.Gender + "'";
+
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()){}
+            }
+        }
+
         public List<CountryDetails> getAllCountries()
         {
             List<CountryDetails> countriesDetails = new List<CountryDetails>(); ;
