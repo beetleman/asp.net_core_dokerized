@@ -36,8 +36,8 @@ GO
 CREATE TABLE Humans (
   HumanID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
   HumanName NVARCHAR(100) NOT NULL,
-  HumanSurName NVARCHAR(100) NOT NULL,
-  HumanNickName NVARCHAR(100) NOT NULL DEFAULT '',
+  HumanSurname NVARCHAR(100) NOT NULL,
+  HumanNickname NVARCHAR(100) NOT NULL DEFAULT '',
   CountryID INT NOT NULL FOREIGN KEY REFERENCES Countries(CountryID),
   GenderID INT NOT NULL FOREIGN KEY REFERENCES Genders(GenderID)
 );
@@ -128,7 +128,7 @@ VALUES (0, N'Poland', N'Warszawa', 312679, 4),
 SET IDENTITY_INSERT Countries OFF;
 GO
 
-INSERT INTO Humans (HumanName, HumanSurName, CountryID, GenderID)
+INSERT INTO Humans (HumanName, HumanSurname, CountryID, GenderID)
 VALUES (N'Mateusz', N'Probachta', 0, 1);
 GO
 
@@ -176,7 +176,7 @@ CREATE PROCEDURE createHuman
        @countryID INT = 1,
        @genderID INT = 1
 AS
-  INSERT INTO Humans (HumanName, HumanSurName, CountryID, GenderID)
+  INSERT INTO Humans (HumanName, HumanSurname, CountryID, GenderID)
   VALUES (@name, @surName, @countryID, @genderID);
 GO
 

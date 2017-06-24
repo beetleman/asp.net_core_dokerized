@@ -1,7 +1,14 @@
 @{
     ViewData["Title"] = "Humans";
 }
-<h2>@ViewData["Title"]</h2>
+<h2>
+  @ViewData["Title"]
+  <a asp-area=""
+     asp-controller="Home"
+     asp-action="AddHuman"
+     class="btn btn-success btn-sm pull-right"
+     role="button">Add</a>
+</h2>
 
 <table class="table table-striped">
   <thead>

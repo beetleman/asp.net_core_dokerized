@@ -22,6 +22,24 @@ namespace app.Controllers
             return View();
         }
 
+
+        public IActionResult AddHuman()
+        {
+            ViewData["allCountries"] = DataService.getAllCountries();
+            ViewData["allGenders"] = DataService.getAllGenders();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddHuman(HumanViewModel input)
+        {
+            ViewData["allCountries"] = DataService.getAllCountries();
+            ViewData["allGenders"] = DataService.getAllGenders();
+            Console.WriteLine("Post");
+            Console.WriteLine(input.Name);
+            return View();
+        }
+
         public IActionResult Countries()
         {
             ViewData["allCountries"] = DataService.getAllCountries();

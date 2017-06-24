@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Add Human";
+}
+<h2>@ViewData["Title"].</h2>
+
+
+@model HumanViewModel
+<form asp-action="AddHuman" method="post">
+  <div class="form-group">
+    <label asp-for="Name">Name</label>
+    <input class="form-control" asp-for="Name" placeholder="Name">
+    <span asp-validation-for="Name" class="help-block"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="Surname">Surname</label>
+    <input class="form-control" asp-for="Surname" placeholder="Surname">
+    <span asp-validation-for="Surname" class="help-block"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="Nickname">Nickname</label>
+    <input class="form-control" asp-for="Nickname" placeholder="Nickname">
+    <span asp-validation-for="Nickname" class="help-block"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="Country">Country</label>
+    <select class="form-control" asp-for="Country" placeholder="Country">
+      @foreach (var country in ViewData["allCountries"] as List<CountryDetails>) {
+        <option value="@country.Id">@country.Name</option>
+        }
+    </select>
+    <span asp-validation-for="Country" class="help-block"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="Gender">Gender</label>
+    <select class="form-control" asp-for="Gender" placeholder="Gender">
+      @foreach (var gender in ViewData["allGenders"] as List<Gender>) {
+        <option value="@gender.Id">@gender.Name</option>
+        }
+    </select>
+    <span asp-validation-for="Gender" class="help-block"></span>
+  </div>
+
+  <button type="submit" class="btn btn-success">Submit</button>
+  <a asp-area=""
+     asp-controller="Home"
+     asp-action="Index"
+     class="btn btn-warning"
+     role="button">Cancel</a>
+</form>
